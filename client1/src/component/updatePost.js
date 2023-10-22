@@ -21,7 +21,7 @@ const UpdatePost = () => {
         //console.log(item);
     }
     const updatedt =  () => {
-        dispatch(updatePosting1(id, item));
+        dispatch(updatePosting1(id, item, sessionStorage.getItem('token')));
         // Swal.fire(
         //     "Good Job!",
         //     "This is button handler",
