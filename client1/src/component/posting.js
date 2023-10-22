@@ -26,7 +26,7 @@ const Posting = () => {
     }
     const upld = (e) => {
         e.preventDefault();
-        dispatch(addPost(item));
+        dispatch(addPost(item, sessionStorage.getItem('token')));
         Swal.fire(
             "Good Job!",
             "This is button handler",
