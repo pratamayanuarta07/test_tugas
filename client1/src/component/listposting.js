@@ -40,8 +40,8 @@ const Listposting = () => {
           }).then( (result) => {
             if (result.isConfirmed) {
                 setupdate(!updatedt);
-                dispatch(updatePosting(id, data));
-                setupdate(!updatedt);
+                dispatch(updatePosting(id, data, sessionStorage.getItem('token')));
+                //setupdate(!updatedt);
                 Swal.fire(
                     "Good Job!",
                     "This is button handler",
