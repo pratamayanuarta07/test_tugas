@@ -69,16 +69,11 @@ const SideBar = () => {
       console.log('adws')
       setlistmenu([
         { to: "home", path: "/home", name: "home", icon: <MdCottage /> },
+        
         {
-          to:'listproduct', 
-          path:'/listproduct', 
-          name:"listproduct",
-          icon: <MdShopTwo />,
-        },
-        {
-          to:'parent', 
-          path:'/parent', 
-          name:'parent',
+          to:'about', 
+          path:'/about', 
+          name:'about',
           icon: <MdCategory />,
         },
         {
