@@ -232,7 +232,7 @@ export const refresh = (data1) =>{
 }
 
 
-export const addPost = (data1) =>{
+export const addPost = (data1, auth) =>{
     return (dispatch) => {
         console.log('2. Masuk Action');
         dispatch({
@@ -247,7 +247,8 @@ export const addPost = (data1) =>{
         axios({
             method: "POST",
             url: "http://localhost:3400/posting",
-            data:data1
+            data:data1,
+            headers:{Authorization:auth}
              })
             .then((response) => {
                 console.log('3. Berhasil Dapet Data : ', response.data);
@@ -319,7 +320,7 @@ export const getPosting = (auth) =>{
 }
 
 
-export const updatePosting = (id, data1) =>{
+export const updatePosting = (id, data1, auth) =>{
     return (dispatch) => {
         console.log('2. Masuk Action');
         dispatch({
@@ -334,7 +335,8 @@ export const updatePosting = (id, data1) =>{
         axios({
             method: "PATCH",
             url: "http://localhost:3400/posting/"+id,
-            data:data1
+            data:data1,
+            headers:{Authorization:auth}
                          })
             .then((response) => {
                 console.log('3. Berhasil Dapet Data : ', response);
@@ -406,7 +408,7 @@ export const getPosting1 = (auth, id) =>{
     }
 }
 
-export const updatePosting1 = (id, data1) =>{
+export const updatePosting1 = (id, data1, auth) =>{
     return (dispatch) => {
         console.log('2. Masuk Action');
         dispatch({
@@ -421,7 +423,8 @@ export const updatePosting1 = (id, data1) =>{
         axios({
             method: "PATCH",
             url: "http://localhost:3400/posting2/"+id,
-            data:data1
+            data:data1,
+            headers:{Authorization:auth}
                          })
             .then((response) => {
                 console.log('3. Berhasil Dapet Data : ', response);
