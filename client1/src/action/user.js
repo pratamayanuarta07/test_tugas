@@ -159,7 +159,7 @@ export const login = (data1) =>{
              })
             .then((response) => {
                 console.log('3. Berhasil Dapet Data : ', response.data);
-                
+                localStorage.setItem('aa', JSON.stringify({msg:response.data.status, id:response.data.data.id, role:response.data.data.role, token:response.data.data.token}));
                 dispatch({
                     type: LOGIN,
                     payload: {
@@ -168,10 +168,12 @@ export const login = (data1) =>{
                         errorMessage: false
                     }
                 });
-                sessionStorage.setItem('msg', response.data.status);
-                sessionStorage.setItem('id', response.data.data.id);
-                sessionStorage.setItem('role', response.data.data.role);
-                sessionStorage.setItem('token', response.data.data.token);
+                // sessionStorage.setItem('item', {msg:response.data.status,
+                // id:response.data.data.id, role:response.data.data.role, token:response.data.data.token});
+                // sessionStorage.setItem('msg', response.data.status);
+                // sessionStorage.setItem('id', response.data.data.id);
+                // sessionStorage.setItem('role', response.data.data.role);
+                // sessionStorage.setItem('token', response.data.data.token);
             })
             .catch((err) => {
                 console.log('3. Gagal', err.message);
