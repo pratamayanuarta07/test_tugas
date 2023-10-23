@@ -5,9 +5,7 @@ const Logout = () => {
     
     const navigate = useNavigate();
     useEffect(() => {
-        sessionStorage.removeItem('id');
-        sessionStorage.removeItem('role');
-        //sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
         navigate(`/`);
     }, []);
     return (
