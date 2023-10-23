@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPosting, getPosting1, updatePosting } from '../action/user';
 import Swal from "sweetalert2";
 import { Link, useNavigate } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 const Listposting = () => {
     const navigate = useNavigate();
     var [a, seta] = useState(0);
@@ -11,9 +12,9 @@ const Listposting = () => {
     const {get1PostItemResult} = useSelector((state) => state.list);
     const [showCards, setShowCards] = useState(false);
     const [updatedt, setupdate] = useState(false);
-    console.log(sessionStorage.getItem('id'));
     useEffect(() => {
-        dispatch(getPosting1(sessionStorage.getItem('token'), sessionStorage.getItem('id')));
+        const af = jwt_decode(localStorage.getItem('token'))
+        dispatch(getPosting1(localStorage.getItem('token'), af.id));
         //console.log(getPostItemResult); 
       }, [updatedt]);
       const [dd, setdd] = useState({});  
@@ -40,7 +41,7 @@ const Listposting = () => {
           }).then( (result) => {
             if (result.isConfirmed) {
                 setupdate(!updatedt);
-                dispatch(updatePosting(id, data, sessionStorage.getItem('token')));
+                dispatch(updatePosting(id, data, localStorage.getItem('token')));
                 //setupdate(!updatedt);
                 Swal.fire(
                     "Good Job!",
