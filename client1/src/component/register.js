@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addItem, getItem } from '../action/user';
 import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
+import axios from 'axios';
 const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -15,20 +16,25 @@ const Register = () => {
     }
     //sessionStorage.setItem('msg', 'aa')
 
-    const insert = (e) => {
+    const insert = async (e) => {
         
         try {
             e.preventDefault();
-            dispatch(addItem(item));    
-            console.log(sessionStorage.getItem('msg'));
-            console.log(typeof(sessionStorage.getItem('msg')));
-            if (+sessionStorage.getItem('msg') !== 200) {             
-            Swal.fire(
-                "Password Eror!",
-                sessionStorage.getItem('msg'),
+            //dispatch(addItem(item));    
+             const result = await axios({
+              method: "POST",
+              url: "http://localhost:3400/user",
+              data:item
+               });
+            console.log(result);
+            
+            if (result.data.status !== 200) {             
+              //console.log('aaa');
+              Swal.fire(
+                "Good Job!",
+                result.data.status,
                 "warning"
-            );
-            sessionStorage.removeItem('msg');
+                )
             }
             else{
                 Swal.fire({
