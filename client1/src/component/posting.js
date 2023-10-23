@@ -3,37 +3,42 @@ import { Transition } from "@headlessui/react";
 import { useDispatch } from 'react-redux';
 import { addPost } from '../action/user';
 import Swal from "sweetalert2";
+import jwt_decode from "jwt-decode";
+import { useNavigate } from 'react-router-dom';
 const Posting = () => {
-  console.log(sessionStorage.getItem('id'));
+  //console.log(localStorage.getItem('id'));
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [test2, settest2] = useState(0);
-    const [item, setItem] = useState({
+  const [af, setaf] = useState(jwt_decode(localStorage.getItem('token')));  
+  const [item, setItem] = useState({
         title: '',
         content:'',
         linekdin:'',
         email:'',
         telpon:'',
-        posting:'',
-        userid:sessionStorage.getItem('id')
+        posting:0,
+        userid:af.id
       });
     const [test, setTest] = useState(false);
-    //setItem({...item, user_id:sessionStorage.getItem('id')});
-
+    //setItem({...item, user_id:localStorage.getItem('id')});
+    console.log(item);
     const createHandler = (e) => {
         setItem({...item, [e.target.name]:e.target.value});
         //console.log(item);
     }
     const upld = (e) => {
         e.preventDefault();
-        dispatch(addPost(item, sessionStorage.getItem('token')));
+        dispatch(addPost(item, localStorage.getItem('token')));
         Swal.fire(
             "Good Job!",
             "This is button handler",
             "success"
             )
+        navigate('/dashboard/listposting')
     }
-    console.log(item);
+    //console.log(item);
     return (
       
         <div className='container'>
