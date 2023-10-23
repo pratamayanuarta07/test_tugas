@@ -3,13 +3,14 @@ import { BiSolidCalculator } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../logo.svg";
 import { useEffect, useState } from "react";
-
+import jwt_decode from "jwt-decode";
 const SideBar = () => {
   const pathname = useLocation();
   
   const handler = () => {
-    if (+sessionStorage.getItem('role') === 1) {
-      console.log('aaaa = '+sessionStorage.getItem('role'));
+    const af = jwt_decode(sessionStorage.getItem('token'));
+    if (+af.role === 1) {
+
       setlistmenu([
         { to: "home", path: "/home", name: "home", icon: <MdCottage /> },
         {
@@ -66,7 +67,7 @@ const SideBar = () => {
       // ];
     }
     else{
-      console.log('adws')
+      //console.log('adws')
       setlistmenu([
         { to: "home", path: "/home", name: "home", icon: <MdCottage /> },
         
