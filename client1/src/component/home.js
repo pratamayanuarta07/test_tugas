@@ -18,14 +18,14 @@ const Home = () => {
   };
 
       useEffect(() => {
-        console.log(sessionStorage.getItem('token'));
-        dispatch(getPosting(sessionStorage.getItem('token')));
+        //console.log(sessionStorage.getItem('token'));
+        dispatch(getPosting(localStorage.getItem('token')));
         //console.log(getPostItemResult); 
       }, []);
     
-    console.log('idnya : '+sessionStorage.getItem('id'));
-    console.log('rolenya : '+sessionStorage.getItem('role'));
-    console.log('tokennya : '+sessionStorage.getItem('token'));
+    // console.log('idnya : '+sessionStorage.getItem('id'));
+    // console.log('rolenya : '+sessionStorage.getItem('role'));
+    // console.log('tokennya : '+sessionStorage.getItem('token'));
       function Card({ title, content, showCard, linkedin, email, telpon }) {
         return (
           <Transition
