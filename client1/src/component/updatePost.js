@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Transition } from "@headlessui/react";
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { addPost, updatePosting1 } from '../action/user';
 import Swal from "sweetalert2";
 
 const UpdatePost = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     //const data = useParams();
     const { id, title, content } = useParams();
     const [item, setItem] = useState({
@@ -20,17 +21,19 @@ const UpdatePost = () => {
         setItem({...item, [e.target.name]:e.target.value});
         //console.log(item);
     }
-    const updatedt =  () => {
-        dispatch(updatePosting1(id, item, sessionStorage.getItem('token')));
-        // Swal.fire(
-        //     "Good Job!",
-        //     "This is button handler",
-        //     "success"
-        //     )
-        alert('Sukses Update');
+    const updatedt =  (e) => {
+      e.preventDefault();  
+      dispatch(updatePosting1(id, item, sessionStorage.getItem('token')));
+        Swal.fire(
+            "Good Job!",
+            "This is button handler",
+            "success"
+            )
+            navigate('/dashboard/listposting')
+        //alert('Sukses Update');
     }
 
-    console.log(item);  
+    //console.log(item);  
     return (
         <div className='container'>
           <Transition
@@ -46,7 +49,7 @@ const UpdatePost = () => {
           <div className="container mx-auto">
             <h3 className='text-xl'>Buat Postingan Baru</h3>
             <br></br>
-        <form action="" onSubmit={()=> updatedt()}>
+        <form action="" onSubmit={(e)=> updatedt(e)}>
           <div className="form-group mb-3">
           <label className="block text-gray-700 text-sm font-bold mb-2">Title :</label>
             <input
