@@ -8,7 +8,7 @@ const SideBar = () => {
   const pathname = useLocation();
   
   const handler = () => {
-    const af = jwt_decode(sessionStorage.getItem('token'));
+    const af = jwt_decode(localStorage.getItem('token'));
     if (+af.role === 1) {
 
       setlistmenu([
