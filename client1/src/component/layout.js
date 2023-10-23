@@ -45,7 +45,7 @@ const Layout = () => {
       window.addEventListener("resize", handleResize);
     }
 
-    if (!sessionStorage.getItem('id')) {
+    if (!localStorage.getItem('token')) {
       navigate('/');
     }
 
