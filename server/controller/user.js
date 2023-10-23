@@ -44,7 +44,7 @@ const login = async (req, res) => {
             console.log(match);
             if (match) {
                 console.log(user.username);
-                const accsess_token = jwt.sign({username:user.username}, process.env.SECR_KEY, {expiresIn:'3h'});
+                const accsess_token = jwt.sign({id:user.id, role:user.role,username:user.username}, process.env.SECR_KEY, {expiresIn:'3h'});
                 const refresh_token1 = jwt.sign({username:user.username}, process.env.SECR_KEY2, {expiresIn:'1d'});
                 await models.users.update(
                     {tokens:'true'},
